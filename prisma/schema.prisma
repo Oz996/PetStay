@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid()) @map("_id") @db.ObjectId
+  email    String
+  password String
+}
+
+model Rental {
+  id              String        @id @default(uuid()) @map("_id")
+  name            String
+  description     String
+  city            String
+  city_short      String
+  address         String
+  country         String
+  dates           String
+  pet_policy      String
+  people          Int
+  isFee           Boolean
+  price           Int
+  amenities       Amenities?    @relation(fields: [amenitiesId], references: [id])
+  amenitiesId     String?       @unique
+  dog_amenities   DogAmenities? @relation(fields: [dog_amenitiesId], references: [id])
+  dog_amenitiesId String?       @unique
+  neighborhood    Neighborhood? @relation(fields: [neighborhoodId], references: [id])
+  neighborhoodId  String?       @unique
+  rating          Rating?       @relation(fields: [ratingId], references: [id])
+  ratingId        String?       @unique
+  gallery         Gallery[]
+  review          Review[]
+}
+
+model Amenities {
+  id            String  @id @default(uuid()) @map("_id")
+  self_check_in Boolean
+  wifi          Boolean
+  free_parking  Boolean
+  kitchen       Boolean
+  bath_tub      Boolean
+  rental        Rental?
+}
+
+model DogAmenities {
+  id        String  @id @default(uuid()) @map("_id")
+  microwave Boolean
+  shower    Boolean
+  towel     Boolean
+  dog_food  Boolean
+  cats      Boolean
+  rental    Rental?
+}
+
+model Neighborhood {
+  id       String  @id @default(uuid()) @map("_id")
+  name     String
+  distance Int
+  rental   Rental?
+}
+
+model Rating {
+  id     String  @id @default(uuid()) @map("_id")
+  rating String
+  votes  Int
+  rental Rental?
+}
+
+model Review {
+  id       String  @id @default(uuid()) @map("_id")
+  review   String
+  rental   Rental? @relation(fields: [rentalId], references: [id])
+  rentalId String
+}
+
+model Gallery {
+  id       String  @id @default(uuid()) @map("_id")
+  imageUrl String
+  rental   Rental? @relation(fields: [rentalId], references: [id])
+  rentalId String
+}
