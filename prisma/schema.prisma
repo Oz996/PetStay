@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,80 +8,92 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   email    String
   password String
 }
 
 model Rental {
-  id              String        @id @default(uuid()) @map("_id")
-  name            String
-  description     String
-  city            String
-  city_short      String
-  address         String
-  country         String
-  dates           String
-  pet_policy      String
-  people          Int
-  isFee           Boolean
-  price           Int
-  amenities       Amenities?    @relation(fields: [amenitiesId], references: [id])
-  amenitiesId     String?       @unique
-  dog_amenities   DogAmenities? @relation(fields: [dog_amenitiesId], references: [id])
-  dog_amenitiesId String?       @unique
-  neighborhood    Neighborhood? @relation(fields: [neighborhoodId], references: [id])
-  neighborhoodId  String?       @unique
-  rating          Rating?       @relation(fields: [ratingId], references: [id])
-  ratingId        String?       @unique
-  gallery         Gallery[]
-  review          Review[]
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  type          String
+  description   String
+  city          String
+  city_short    String
+  address       String
+  country       String
+  dateArrival   String
+  dateDeparture String
+  pet_policy    String
+  people        Int
+  isFee         Boolean
+  price         Int
+  amenities     Amenities?
+  dog_amenities DogAmenities?
+  rating        Rating?
+  neighborhood  Neighborhood[]
+  gallery       Gallery[]
+  review        Review[]
+  feats         Feats[]
 }
 
 model Amenities {
-  id            String  @id @default(uuid()) @map("_id")
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
   self_check_in Boolean
   wifi          Boolean
   free_parking  Boolean
   kitchen       Boolean
   bath_tub      Boolean
-  rental        Rental?
+  rental        Rental? @relation(fields: [rentalId], references: [id])
+  rentalId      String? @unique @db.ObjectId
 }
 
 model DogAmenities {
-  id        String  @id @default(uuid()) @map("_id")
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
   microwave Boolean
   shower    Boolean
-  towel     Boolean
   dog_food  Boolean
   cats      Boolean
-  rental    Rental?
+  rental    Rental? @relation(fields: [rentalId], references: [id])
+  rentalId  String? @unique @db.ObjectId
 }
 
 model Neighborhood {
-  id       String  @id @default(uuid()) @map("_id")
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
   name     String
   distance Int
-  rental   Rental?
+  rental   Rental? @relation(fields: [rentalId], references: [id])
+  rentalId String? @db.ObjectId
 }
 
 model Rating {
-  id     String  @id @default(uuid()) @map("_id")
-  rating String
-  votes  Int
-  rental Rental?
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  rating   String
+  votes    Int
+  rental   Rental? @relation(fields: [rentalId], references: [id])
+  rentalId String? @unique @db.ObjectId
+  review   Review?
 }
 
 model Review {
-  id       String  @id @default(uuid()) @map("_id")
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
   review   String
   rental   Rental? @relation(fields: [rentalId], references: [id])
-  rentalId String
+  rentalId String  @db.ObjectId
+  rating   Rating? @relation(fields: [ratingId], references: [id])
+  ratingId String? @unique @db.ObjectId
 }
 
 model Gallery {
-  id       String  @id @default(uuid()) @map("_id")
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
   imageUrl String
   rental   Rental? @relation(fields: [rentalId], references: [id])
-  rentalId String
+  rentalId String  @db.ObjectId
+}
+
+model Feats {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  feat     String
+  rental   Rental? @relation(fields: [rentalId], references: [id])
+  rentalId String  @db.ObjectId
 }

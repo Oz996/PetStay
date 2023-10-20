@@ -1,6 +1,10 @@
 import React from "react";
 
-const CalendarIcon = ({ className }) => {
+interface props {
+  className: string;
+}
+
+const CalendarIcon = ({ className }: props) => {
   return (
     <svg
       className={className}

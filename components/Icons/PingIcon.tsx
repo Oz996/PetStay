@@ -1,6 +1,10 @@
 import React from "react";
 
-const PingIcon = ({ className }) => {
+interface props {
+  className: string;
+}
+
+const PingIcon = ({ className }: props) => {
   return (
     <svg
       className={className}

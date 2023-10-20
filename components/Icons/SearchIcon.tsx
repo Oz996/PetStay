@@ -1,6 +1,10 @@
 import React from "react";
 
-const SearchIcon = ({ className }) => {
+interface props{
+    className: string
+}
+
+const SearchIcon = ({ className }: props) => {
   return (
     <svg
       className={className}
