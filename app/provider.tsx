@@ -1,10 +1,8 @@
-"use client"
+"use client";
 
-export default function Provider({children}){
+import { AuthContextProvider } from "@/context/AuthContext";
+import { ReactElement } from "react";
 
-    return(
-        <>
-        {children}
-        </>
-    )
+export default function Provider({ children }: { children: ReactElement }) {
+  return <AuthContextProvider>{children}</AuthContextProvider>;
 }

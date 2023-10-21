@@ -1,21 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import React from "react";
 import Logo from "./Logo";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import { User } from "@/types/types";
+import { useAuth } from "@/hooks/useAuth";
 
 const AuthModal = () => {
   const [userRegister, setUserRegister] = useState(false);
+  const modalRef = useRef<HTMLDialogElement | null>(null);
+
+  const { signIn } = useAuth();
+
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
+    register: signUpRegister,
+    handleSubmit: signUpHandleSubmit,
+    formState: { errors: signUpErrors },
+  } = useForm();
+  const {
+    register: signInRegister,
+    handleSubmit: signInHandleSubmit,
+    formState: { errors: signInErrors },
+    getValues,
   } = useForm();
 
-  const onRegisterSubmit = async (data) => {
-    const res = await fetch("http://localhost:3000/api/users", {
+  const onRegisterSubmit = async (data: FieldValues) => {
+    const res = await fetch("http://localhost:3000/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,6 +35,23 @@ const AuthModal = () => {
       body: JSON.stringify(data),
     });
     console.log(res.status);
+  };
+
+  const onSignInSubmit = async (data: FieldValues) => {
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      modalRef.current!.close();
+      const data = await res.json();
+      const token = data.token;
+      const email = getValues("email");
+      signIn(token, email);
+    }
   };
 
   return (
@@ -36,7 +65,7 @@ const AuthModal = () => {
       >
         Log in
       </button>
-      <dialog id="my_modal_2" className="modal">
+      <dialog ref={modalRef} id="my_modal_2" className="modal">
         <div className="modal-box flex flex-col gap-3">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -49,18 +78,48 @@ const AuthModal = () => {
           {!userRegister ? (
             <>
               <h3 className="font-bold text-4xl text-center my-4">Sign in</h3>
-              <form className="flex flex-col gap-10 p-12">
+              <form
+                onSubmit={signInHandleSubmit(onSignInSubmit)}
+                className="flex flex-col gap-10 p-12"
+              >
                 <input
                   type="text"
+                  {...signInRegister("email", {
+                    required: "Email is required",
+                  })}
                   className="rounded-xl border px-5 min-h-[3rem] w-full focus:outline-primary"
                   placeholder="E-mail address"
                 />
+                <ErrorMessage
+                  errors={signInErrors}
+                  name="email"
+                  render={({ message }) => (
+                    <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
+                      {message}
+                    </p>
+                  )}
+                ></ErrorMessage>
                 <input
                   type="password"
+                  {...signInRegister("password", {
+                    required: "Password is required",
+                  })}
                   className="rounded-xl border px-5 min-h-[3rem] w-full focus:outline-primary"
                   placeholder="Password"
                 />
-                <button className="h-[2.5rem] mt-6 btn btn-sm capitalize text-[1rem] bg-primary rounded-xl text-white hover:bg-primary_hover duration-300">
+                <ErrorMessage
+                  errors={signInErrors}
+                  name="password"
+                  render={({ message }) => (
+                    <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
+                      {message}
+                    </p>
+                  )}
+                ></ErrorMessage>
+                <button
+                  type="submit"
+                  className="h-[2.5rem] mt-6 btn btn-sm capitalize text-[1rem] bg-primary rounded-xl text-white hover:bg-primary_hover duration-300"
+                >
                   Sign in
                 </button>
                 <p className="text-center">
@@ -78,17 +137,19 @@ const AuthModal = () => {
             <>
               <h3 className="font-bold text-4xl text-center my-4">Sign up</h3>
               <form
-                onSubmit={handleSubmit(onRegisterSubmit)}
+                onSubmit={signUpHandleSubmit(onRegisterSubmit)}
                 className="flex flex-col gap-10 p-12"
               >
                 <input
                   type="text"
-                  {...register("email", { required: "Email is required" })}
+                  {...signUpRegister("email", {
+                    required: "Email is required",
+                  })}
                   className="rounded-xl border px-5 min-h-[3rem] w-full focus:outline-primary"
                   placeholder="E-mail address"
                 />
                 <ErrorMessage
-                  errors={errors}
+                  errors={signUpErrors}
                   name="email"
                   render={({ message }) => (
                     <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
@@ -98,14 +159,14 @@ const AuthModal = () => {
                 ></ErrorMessage>
                 <input
                   type="password"
-                  {...register("password", {
+                  {...signUpRegister("password", {
                     required: "Password is required",
                   })}
                   className="rounded-xl border px-5 min-h-[3rem] w-full focus:outline-primary"
                   placeholder="Password"
                 />
                 <ErrorMessage
-                  errors={errors}
+                  errors={signUpErrors}
                   name="password"
                   render={({ message }) => (
                     <p className="text-red-500 text-sm font-semibold my-[-1rem]">
@@ -115,14 +176,14 @@ const AuthModal = () => {
                 ></ErrorMessage>
                 <input
                   type="password"
-                  {...register("cPassword", {
+                  {...signUpRegister("cPassword", {
                     required: "Please confirm password",
                   })}
                   className="rounded-xl border px-5 min-h-[3rem] w-full focus:outline-primary"
                   placeholder="Confirm Password"
                 />
                 <ErrorMessage
-                  errors={errors}
+                  errors={signUpErrors}
                   name="cPassword"
                   render={({ message }) => (
                     <p className="text-red-500 text-sm font-semibold  my-[-1rem]">

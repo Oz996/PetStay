@@ -10,7 +10,6 @@ import AuthModal from "./AuthModal";
 const roboto = Roboto({ subsets: ["latin"], weight: "700" });
 
 const Header = () => {
-  console.log("yo yo yo yo yo yooo");
   return (
     <header className="h-[5rem] w-full absolute left-0 top-0 flex-col">
       <div className="container mx-auto py-5 flex justify-between">
