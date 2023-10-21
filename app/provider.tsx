@@ -1,8 +1,7 @@
 "use client";
 
 import { AuthContextProvider } from "@/context/AuthContext";
-import { ReactElement } from "react";
 
-export default function Provider({ children }: { children: ReactElement }) {
+export default function Provider({ children }: { children: React.ReactNode }) {
   return <AuthContextProvider>{children}</AuthContextProvider>;
 }

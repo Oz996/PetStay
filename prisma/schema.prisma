@@ -79,7 +79,7 @@ model Review {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   review   String
   rental   Rental? @relation(fields: [rentalId], references: [id])
-  rentalId String  @db.ObjectId
+  rentalId String?  @db.ObjectId
   rating   Rating? @relation(fields: [ratingId], references: [id])
   ratingId String? @unique @db.ObjectId
 }
@@ -88,12 +88,12 @@ model Gallery {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   imageUrl String
   rental   Rental? @relation(fields: [rentalId], references: [id])
-  rentalId String  @db.ObjectId
+  rentalId String?  @db.ObjectId
 }
 
 model Feats {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   feat     String
   rental   Rental? @relation(fields: [rentalId], references: [id])
-  rentalId String  @db.ObjectId
+  rentalId String?  @db.ObjectId
 }

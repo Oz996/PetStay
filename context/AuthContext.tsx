@@ -13,7 +13,7 @@ export const AuthContext = createContext<AuthContext | null>(null);
 export const AuthContextProvider = ({
   children,
 }: {
-  children: ReactElement;
+  children: React.ReactNode;
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState<string | null>(null);
