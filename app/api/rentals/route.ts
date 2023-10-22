@@ -11,7 +11,6 @@ export async function GET(req: NextRequest) {
         gallery: true,
         neighborhood: true,
         rating: true,
-        review: true,
       },
     });
 

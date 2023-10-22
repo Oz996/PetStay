@@ -18,6 +18,9 @@ export interface Rental {
   people: number;
   isFee: boolean;
   price: number;
+  rooms: number;
+  beds: number;
+  bathroom: number;
   amenities: Amenities;
   dog_amenities: DogAmenities;
   neighborhood: Neighborhood;

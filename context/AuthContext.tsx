@@ -1,3 +1,5 @@
+"use client"
+
 import { ReactElement, createContext, useEffect, useState } from "react";
 
 interface AuthContext {

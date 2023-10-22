@@ -7,18 +7,23 @@ interface props {
 }
 
 const RentalCard = ({ rental }: props) => {
-  console.log(rental);
-
   const image = rental.gallery.map((image) => (
     <figure key={image.id}>
-      <Image width={400} height={500} src={image.imageUrl} alt="Rental" />
+      <Image
+        className="rounded-xl"
+        width={400}
+        height={500}
+        src={image.imageUrl}
+        alt="Image of a rental"
+      />
     </figure>
   ));
+
   return (
-    <article className="card  bg-base-100 shadow-xl">
-      <div className="card-body flex flex-row gap-5">
+    <article className="card bg-base-100 shadow-xl">
+      <div className="card-body flex flex-row">
         {image[0]}
-        <div className="flex flex-col">
+        <div className="flex flex-col p-4">
           <h1 className="card-title text-[1.1rem] font-semibold">
             {rental.name}
           </h1>
@@ -29,6 +34,15 @@ const RentalCard = ({ rental }: props) => {
               {rental.dateDeparture}
             </p>
             <p>{rental.price} SEK/night</p>
+          </div>
+          <div>
+            <ol className="flex gap-7 list-disc">
+              <li>{rental.people} guests</li>
+              <li>{rental.rooms} rooms</li>
+              <li>{rental.beds} beds</li>
+              <li>{rental.bathroom} bathroom</li>
+              <li>{rental.people}</li>
+            </ol>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface props {
-  className: string;
+  className?: string;
   height: string;
   width: string;
 }
