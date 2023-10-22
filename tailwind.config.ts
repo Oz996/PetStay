@@ -13,6 +13,7 @@ const config: Config = {
       },
       colors: {
         primary: "#23c28d",
+        primary_light: "#ECFDF5",
         primary_hover: "#6ee7b7",
         secondary: "#C22358",
         danger: "#e11d48",
