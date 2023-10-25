@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     });
 
     return NextResponse.json(rental, { status: 200 });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
       { message: "Error retrieving rentals", error },
       { status: 500 }

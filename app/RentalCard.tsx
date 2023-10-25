@@ -1,5 +1,7 @@
+import Description from "@/components/Description";
 import { Rental } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface props {
@@ -22,49 +24,20 @@ const RentalCard = ({ rental }: props) => {
     </figure>
   ));
 
-  const rentalList = [
-    rental.people === 1
-      ? `${rental.people} guest `
-      : `${rental.people} guests `,
-    rental.rooms === 1 ? `${rental.rooms} room ` : `${rental.rooms} rooms `,
-    rental.beds === 1 ? `${rental.beds} bed ` : `${rental.beds} beds `,
-    rental.bathroom === 1
-      ? `${rental.bathroom} bathroom`
-      : `${rental.bathroom} bathrooms`,
-  ];
-  console.log(rentalList);
-
   return (
     <article className="card group bg-base-100 shadow-xl cursor-pointer">
-      <div className="card-body grid grid-cols-2">
+      <Link
+        href={`/rental/${rental.id}`}
+        className="card-body grid grid-cols-2"
+      >
         <div>{image[0]}</div>
         <div className="flex flex-col p-4">
           <h1 className="card-title text-[1.1rem] font-semibold">
             {rental.name}
           </h1>
-          <div className="flex gap-3 text-gray-400 mb-5">
-            <p className="border-r">
-              {rental.dateArrival}
-              <span className="mx-3">-</span>
-              {rental.dateDeparture}
-            </p>
-            <p>{rental.price} SEK/night</p>
-          </div>
-          <div className="mb-5">{rentalList}</div>
-          <ol className="flex gap-7 flex-wrap leading-3">
-            {rental.feats.map((feat) => {
-              return (
-                <span
-                  key={feat.id}
-                  className="p-3 bg-primary_light rounded-full text-center w-[9rem]"
-                >
-                  {feat.feat}
-                </span>
-              );
-            })}
-          </ol>
+          <Description rental={rental} />
         </div>
-      </div>
+      </Link>
     </article>
   );
 };
