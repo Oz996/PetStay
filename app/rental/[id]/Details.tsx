@@ -54,8 +54,7 @@ const Details = ({ rental }: props) => {
       <div className="bg-primary_light rounded-xl p-8 mb-32">
         <h2 className="text-lg font-semibold">Sound level</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, unde
-          in? Eaque alias accusamus placeat
+          {rental.sound_level}
         </p>
       </div>
       <div className="grid grid-cols-2">
@@ -125,7 +124,7 @@ const Details = ({ rental }: props) => {
         </div>
       </div>
       <div className="grid grid-cols-2 mt-32">
-        <Map />
+        <Map rental={rental}/>
         <div className="px-10">
           <h2 className="text-2xl font-bold mb-5">
             Pet-friendly Neighborhoods

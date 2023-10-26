@@ -15,6 +15,9 @@ export interface Rental {
   dateArrival: string;
   dateDeparture: string;
   pet_policy: string;
+  sound_level: string;
+  latitude: number;
+  longitude: number;
   people: number;
   isFee: boolean;
   price: number;

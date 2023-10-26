@@ -16,6 +16,7 @@ model User {
 model Rental {
   id            String         @id @default(auto()) @map("_id") @db.ObjectId
   type          String
+  name          String
   description   String
   city          String
   city_short    String
@@ -25,8 +26,8 @@ model Rental {
   dateDeparture String
   pet_policy    String
   sound_level   String
-  latitude      Int
-  longitude     Int
+  latitude      Float
+  longitude     Float
   people        Int
   isFee         Boolean
   price         Int
