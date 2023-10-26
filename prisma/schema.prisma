@@ -14,7 +14,7 @@ model User {
 }
 
 model Rental {
-  id            String         @id @default(auto()) @map("_id") @db.ObjectId 
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
   type          String
   description   String
   city          String
@@ -24,6 +24,9 @@ model Rental {
   dateArrival   String
   dateDeparture String
   pet_policy    String
+  sound_level   String
+  latitude      Int
+  longitude     Int
   people        Int
   isFee         Boolean
   price         Int

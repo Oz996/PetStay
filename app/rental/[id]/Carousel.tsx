@@ -37,7 +37,7 @@ const Carousel = ({ rental }: props) => {
   };
 
   return (
-    <div className="carousel w-[40rem]">
+    <div className="carousel w-[40rem] ">
       {rental.gallery.map((image, index) => (
         <div
           key={image.id}
@@ -50,8 +50,9 @@ const Carousel = ({ rental }: props) => {
             src={image.imageUrl}
             width={400}
             height={400}
-            alt=""
-            className="w-full"
+            alt="Picture of rental"
+            className="w-full h-[23rem] rounded-lg object-cover"
+            priority={true}
           />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a onClick={goToPreviousSlide} className="btn btn-circle">

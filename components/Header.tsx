@@ -3,7 +3,6 @@ import Logo from "./Logo";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
 import AuthModal from "./AuthModal";
-import Navbar from "./Navbar";
 
 const roboto = Roboto({ subsets: ["latin"], weight: "700" });
 
