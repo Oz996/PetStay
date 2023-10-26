@@ -1,5 +1,27 @@
+import { Metadata } from "next";
 import Details from "./Details";
 import axios from "axios";
+import { Rental } from "@/types/types";
+
+interface Title {
+  data: Promise<Rental>;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const res: Title = await axios.get(
+    `http://localhost:3000/api/rental/${params.id}`
+  );
+  const data = await res.data;
+
+  return {
+    title: data.name,
+    description: data.name,
+  };
+}
 
 export default async function Page({ params }: { params: { id: string } }) {
   const getRental = async () => {
@@ -10,8 +32,10 @@ export default async function Page({ params }: { params: { id: string } }) {
     // console.log(data)
     // return data;
 
-    const response = await axios.get(`http://localhost:3000/api/rental/${params.id}`);
-    return response.data;
+    const res = await axios.get(
+      `http://localhost:3000/api/rental/${params.id}`
+    );
+    return res.data;
   };
   const rental = await getRental();
   console.log(rental);

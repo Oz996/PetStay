@@ -145,6 +145,9 @@ const Details = ({ rental }: props) => {
           </ul>
         </div>
       </div>
+      <div>
+        <h2>{rental.rating.rating}</h2>
+      </div>
     </section>
   );
 };

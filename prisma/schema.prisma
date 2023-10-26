@@ -37,6 +37,7 @@ model Rental {
   amenities     Amenities?
   dog_amenities DogAmenities?
   rating        Rating?
+  host          Host?
   neighborhood  Neighborhood[]
   gallery       Gallery[]
   review        Review[]
@@ -102,4 +103,20 @@ model Feats {
   feat     String
   rental   Rental? @relation(fields: [rentalId], references: [id])
   rentalId String? @db.ObjectId
+}
+
+model Host {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  host     String
+  rating   Float
+  rental   Rental?    @relation(fields: [rentalId], references: [id])
+  rentalId String?    @unique @db.ObjectId
+  question Question[]
+}
+
+model Question {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  question String
+  host     Host   @relation(fields: [hostId], references: [id])
+  hostId   String @db.ObjectId
 }

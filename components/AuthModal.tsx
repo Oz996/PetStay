@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 const AuthModal = () => {
   const [userRegister, setUserRegister] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
   const { signIn, isLoggedIn, signOut } = useAuth();
@@ -26,30 +27,47 @@ const AuthModal = () => {
   } = useForm();
 
   const onRegisterSubmit = async (data: FieldValues) => {
-    const res = await fetch("http://localhost:3000/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    console.log(res.status);
+    try {
+      setIsLoading(true);
+      const res = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (res.status === 201) {
+        setUserRegister(false)
+      }
+      console.log(res.status);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onSignInSubmit = async (data: FieldValues) => {
-    const res = await fetch("http://localhost:3000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (res.ok) {
-      modalRef.current!.close();
-      const data = await res.json();
-      const token = data.token;
-      const email = getValues("email");
-      signIn(token, email);
+    try {
+      setIsLoading(true);
+      const res = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        modalRef.current!.close();
+        const data = await res.json();
+        const token = data.token;
+        const email = getValues("email");
+        signIn(token, email);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -122,7 +140,11 @@ const AuthModal = () => {
                     <button
                       type="submit"
                       className="h-[2.5rem] mt-6 btn btn-sm capitalize text-[1rem] bg-primary rounded-xl text-white hover:bg-primary_hover duration-300"
+                      disabled={isLoading}
                     >
+                      {isLoading && (
+                        <span className="loading loading-spinner loading-sm"></span>
+                      )}
                       Sign in
                     </button>
                     <p className="text-center">
@@ -199,7 +221,11 @@ const AuthModal = () => {
                     <button
                       type="submit"
                       className="h-[2.5rem] mt-6 btn btn-sm capitalize text-[1rem] bg-primary rounded-xl text-white hover:bg-primary_hover duration-300"
+                      disabled={isLoading}
                     >
+                      {isLoading && (
+                        <span className="loading loading-spinner loading-sm"></span>
+                      )}
                       Sign up
                     </button>
                     <p className="text-center">
