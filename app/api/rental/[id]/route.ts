@@ -17,10 +17,10 @@ export async function GET(
         feats: true,
         rating: true,
         neighborhood: true,
-        review: true,
+        reviews: true,
         host: {
-          include: {question: true}
-        }
+          include: { questions: true },
+        },
       },
     });
     return NextResponse.json(rental, { status: 200 });

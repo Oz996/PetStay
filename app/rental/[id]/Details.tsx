@@ -1,6 +1,6 @@
 import Description from "@/components/Description";
 import BackArrow from "@/components/Icons/BackArrow";
-import { Neighborhood, Rental } from "@/types/types";
+import { Neighborhood, Question, Rental } from "@/types/types";
 import React from "react";
 import Carousel from "./Carousel";
 import { AiOutlineCheck, AiOutlineWifi, AiTwotoneStar } from "react-icons/ai";
@@ -169,7 +169,7 @@ const Details = ({ rental }: props) => {
             Frequently asked questions to {rental.host.host}:
           </h2>
           <ul className="flex flex-col gap-4">
-            {rental.host.question.map((question) => (
+            {rental.host.questions.map((question: Question) => (
               <li
                 key={question.id}
                 className="text-blue-600 text-lg underline cursor-pointer"
@@ -182,10 +182,10 @@ const Details = ({ rental }: props) => {
       </div>
       <div className="mt-32">
         <div className="text-2xl flex gap-5">
-          {rental.review.length > 0 && (
+          {rental.reviews.length > 0 && (
             <>
               <p className="">{rental.rating.rating}</p>
-              <p>({rental.review.length} reviews)</p>
+              <p>({rental.reviews.length} reviews)</p>
             </>
           )}
         </div>

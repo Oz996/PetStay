@@ -31,7 +31,7 @@ export interface Rental {
   feats: Feats[];
   gallery: Gallery[];
   rating: Rating;
-  review: Review[];
+  reviews: Review[];
 }
 
 export interface Amenities {
@@ -83,7 +83,7 @@ export interface Host {
   host: string;
   imageUrl: string;
   rating: number;
-  question: Question;
+  questions: Question;
 }
 
 export interface Question {

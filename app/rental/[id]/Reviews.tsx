@@ -11,14 +11,14 @@ const Reviews = ({ rental }: props) => {
   const { isLoggedIn } = useAuth();
   return (
     <div className="mt-10">
-      {rental.review.length === 0 ? (
+      {rental.reviews.length === 0 ? (
         <div>
           <h2 className="text-2xl font-semibold">No reviews yet</h2>
         </div>
       ) : (
         3
       )}
-      {!isLoggedIn ? (
+      {!isLoggedIn ? ( 
         <div>
           <h2 className="text-xl my-3">Leave a review</h2>
           <form className="flex flex-col gap-3">
