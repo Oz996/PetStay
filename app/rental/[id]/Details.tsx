@@ -3,7 +3,7 @@ import BackArrow from "@/components/Icons/BackArrow";
 import { Neighborhood, Rental } from "@/types/types";
 import React from "react";
 import Carousel from "./Carousel";
-import { AiOutlineCheck, AiOutlineWifi } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineWifi, AiTwotoneStar } from "react-icons/ai";
 import { RiParkingBoxLine } from "react-icons/ri";
 import { MdOutlineKitchen } from "react-icons/md";
 import { PiBathtub, PiShower } from "react-icons/pi";
@@ -11,6 +11,8 @@ import { TbMicrowave, TbDogBowl } from "react-icons/tb";
 import { FaCat } from "react-icons/fa";
 import Map from "./Map";
 import DogWalk from "@/components/Icons/DogWalk";
+import Image from "next/image";
+import Reviews from "./Reviews";
 
 interface props {
   rental: Rental;
@@ -53,9 +55,7 @@ const Details = ({ rental }: props) => {
       </div>
       <div className="bg-primary_light rounded-xl p-8 mb-32">
         <h2 className="text-lg font-semibold">Sound level</h2>
-        <p>
-          {rental.sound_level}
-        </p>
+        <p>{rental.sound_level}</p>
       </div>
       <div className="grid grid-cols-2">
         <div>
@@ -124,7 +124,7 @@ const Details = ({ rental }: props) => {
         </div>
       </div>
       <div className="grid grid-cols-2 mt-32">
-        <Map rental={rental}/>
+        <Map rental={rental} />
         <div className="px-10">
           <h2 className="text-2xl font-bold mb-5">
             Pet-friendly Neighborhoods
@@ -145,8 +145,51 @@ const Details = ({ rental }: props) => {
           </ul>
         </div>
       </div>
-      <div>
-        <h2>{rental.rating.rating}</h2>
+      <div className="rounded-3xl border border-black py-10 px-20 grid grid-cols-2 mt-32">
+        <div className="w-[45%] flex flex-col gap-5 text-center ">
+          <h2 className="text-2xl">Hi im your furry host!</h2>
+          <div className="avatar">
+            <div className="w-72 rounded-full">
+              <Image
+                width={200}
+                height={200}
+                src={rental.host.imageUrl}
+                alt="Hosts image"
+              />
+            </div>
+          </div>
+          <p className="text-2xl font-bold">{rental.host.host}</p>
+          <div className="flex gap-2 items-center text-center justify-center">
+            <AiTwotoneStar className="text-green-600 text-xl" />
+            <p className="text-xl">{rental.host.rating}</p>
+          </div>
+        </div>
+        <div>
+          <h2 className="text-3xl font-semibold my-10">
+            Frequently asked questions to {rental.host.host}:
+          </h2>
+          <ul className="flex flex-col gap-4">
+            {rental.host.question.map((question) => (
+              <li
+                key={question.id}
+                className="text-blue-600 text-lg underline cursor-pointer"
+              >
+                {question.question}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="mt-32">
+        <div className="text-2xl flex gap-5">
+          {rental.review.length > 0 && (
+            <>
+              <p className="">{rental.rating.rating}</p>
+              <p>({rental.review.length} reviews)</p>
+            </>
+          )}
+        </div>
+        <Reviews rental={rental} />
       </div>
     </section>
   );

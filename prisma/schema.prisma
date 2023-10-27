@@ -108,6 +108,7 @@ model Feats {
 model Host {
   id       String     @id @default(auto()) @map("_id") @db.ObjectId
   host     String
+  imageUrl String
   rating   Float
   rental   Rental?    @relation(fields: [rentalId], references: [id])
   rentalId String?    @unique @db.ObjectId

@@ -18,7 +18,9 @@ export async function GET(
         rating: true,
         neighborhood: true,
         review: true,
-        host: true,
+        host: {
+          include: {question: true}
+        }
       },
     });
     return NextResponse.json(rental, { status: 200 });

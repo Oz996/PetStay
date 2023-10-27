@@ -27,6 +27,7 @@ export interface Rental {
   amenities: Amenities;
   dog_amenities: DogAmenities;
   neighborhood: Neighborhood;
+  host: Host;
   feats: Feats[];
   gallery: Gallery[];
   rating: Rating;
@@ -75,4 +76,17 @@ export interface Feats {
 export interface Review {
   id: string;
   review: string;
+}
+
+export interface Host {
+  id: string;
+  host: string;
+  imageUrl: string;
+  rating: number;
+  question: Question;
+}
+
+export interface Question {
+  id: string;
+  question: string;
 }
