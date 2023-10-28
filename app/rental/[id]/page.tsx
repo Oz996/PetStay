@@ -40,5 +40,5 @@ export default async function Page({ params }: { params: { id: string } }) {
   const rental = await getRental();
   console.log(rental);
 
-  return <Details rental={rental} />;
+  return <Details rental={rental} params={params} />;
 }

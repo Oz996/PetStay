@@ -76,6 +76,9 @@ export interface Feats {
 export interface Review {
   id: string;
   review: string;
+  title: string;
+  createdAt: string;
+  user: User;
 }
 
 export interface Host {

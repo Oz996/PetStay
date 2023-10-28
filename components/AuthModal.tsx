@@ -37,7 +37,7 @@ const AuthModal = () => {
         body: JSON.stringify(data),
       });
       if (res.status === 201) {
-        setUserRegister(false)
+        setUserRegister(false);
       }
       console.log(res.status);
     } catch (error) {
@@ -62,7 +62,8 @@ const AuthModal = () => {
         const data = await res.json();
         const token = data.token;
         const email = getValues("email");
-        signIn(token, email);
+        console.log(email);
+        signIn(email, token);
       }
     } catch (error) {
       console.error(error);

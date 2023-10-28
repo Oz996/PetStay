@@ -13,12 +13,16 @@ import Map from "./Map";
 import DogWalk from "@/components/Icons/DogWalk";
 import Image from "next/image";
 import Reviews from "./Reviews";
+import Link from "next/link";
 
 interface props {
   rental: Rental;
+  params: {
+    id: string;
+  };
 }
 
-const Details = ({ rental }: props) => {
+const Details = ({ rental, params }: props) => {
   const rentalList = [
     rental?.people === 1
       ? `${rental?.people} guest `
@@ -37,9 +41,11 @@ const Details = ({ rental }: props) => {
         <div className="pt-10">
           <h1 className="text-4xl font-semibold mb-5">{rental?.name}</h1>
           <Description rental={rental} />
-          <button className="h-[3rem] btn w-[25rem] mt-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
-            book now
-          </button>
+          <Link href="/reservation">
+            <button className="h-[3rem] btn w-[25rem] mt-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
+              book now
+            </button>
+          </Link>
         </div>
         <Carousel rental={rental} />
       </div>
@@ -189,7 +195,8 @@ const Details = ({ rental }: props) => {
             </>
           )}
         </div>
-        <Reviews rental={rental} />
+
+        <Reviews rental={rental} params={params} />
       </div>
     </section>
   );

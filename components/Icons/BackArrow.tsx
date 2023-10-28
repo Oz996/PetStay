@@ -1,8 +1,15 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const BackArrow = () => {
+  const router = useRouter();
   return (
-    <div className="flex gap-5 items-center text-lg cursor-pointer">
+    <div
+      className="flex gap-5 items-center text-lg cursor-pointer my-4"
+      onClick={() => router.back()}
+    >
       <svg
         width="34"
         height="29"

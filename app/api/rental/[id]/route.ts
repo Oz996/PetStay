@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { Review } from "@/types/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -17,7 +18,11 @@ export async function GET(
         feats: true,
         rating: true,
         neighborhood: true,
-        reviews: true,
+        reviews: {
+          include: {
+            user: true,
+          },
+        },
         host: {
           include: { questions: true },
         },
@@ -28,6 +33,46 @@ export async function GET(
     console.error(error);
     return NextResponse.json(
       { message: "Error retrieving rental", error },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const body: Review = await req.json();
+    const { review, title, userEmail } = body;
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    const newReview = await prisma.review.create({
+      data: {
+        title,
+        review,
+        userId: user.id,
+        rentalId: params.id,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    return NextResponse.json(newReview, { status: 201 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Error creating review", error },
       { status: 500 }
     );
   }

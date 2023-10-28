@@ -23,16 +23,18 @@ export const AuthContextProvider = ({
 
   console.log(email);
   console.log(isLoggedIn);
-  console.log(token);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
     setIsLoggedIn(!!token || false);
     setToken(token);
-  }, []);
+    setEmail(email)
+  }, [token, email]);
 
   const signIn = (email: string, token: string) => {
     localStorage.setItem("token", token);
+    localStorage.setItem("email", email);
     setIsLoggedIn(true);
     setEmail(email);
     setToken(token);
@@ -40,6 +42,7 @@ export const AuthContextProvider = ({
 
   const signOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     setIsLoggedIn(false);
     setEmail(null);
     setToken(null);
