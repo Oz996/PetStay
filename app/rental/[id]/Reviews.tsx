@@ -44,8 +44,19 @@ const Reviews = ({ rental, params }: props) => {
     }
   };
 
+  const rating = newReview.length > 0 ? 5 : 0;
+
   return (
     <section className="mt-10">
+      <div className="text-2xl flex gap-5">
+        {rental.reviews.length > 0 && (
+          <>
+            <p className="">{rating}</p>
+            <p>({rental.reviews.length} reviews)</p>
+          </>
+        )}
+      </div>
+
       {newReview.length === 0 ? (
         <div>
           <h2 className="text-2xl font-semibold">No reviews yet</h2>

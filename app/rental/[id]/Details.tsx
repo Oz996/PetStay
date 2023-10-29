@@ -34,6 +34,7 @@ const Details = ({ rental, params }: props) => {
       : `${rental?.bathroom} bathrooms`,
   ];
 
+
   return (
     <section>
       <BackArrow />
@@ -41,7 +42,7 @@ const Details = ({ rental, params }: props) => {
         <div className="pt-10">
           <h1 className="text-4xl font-semibold mb-5">{rental?.name}</h1>
           <Description rental={rental} />
-          <Link href="/reservation">
+          <Link href={`/reservation/${params.id}`}>
             <button className="h-[3rem] btn w-[25rem] mt-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
               book now
             </button>
@@ -187,15 +188,6 @@ const Details = ({ rental, params }: props) => {
         </div>
       </div>
       <div className="mt-32">
-        <div className="text-2xl flex gap-5">
-          {rental.reviews.length > 0 && (
-            <>
-              <p className="">{rental.rating.rating}</p>
-              <p>({rental.reviews.length} reviews)</p>
-            </>
-          )}
-        </div>
-
         <Reviews rental={rental} params={params} />
       </div>
     </section>

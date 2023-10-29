@@ -93,3 +93,11 @@ export interface Question {
   id: string;
   question: string;
 }
+
+export interface Credentials {
+  firstName: string
+  lastName: string
+  phone: number
+  cardName: string
+  cardNumber: number
+}
