@@ -3,10 +3,9 @@
 import BackArrow from "@/components/Icons/BackArrow";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
-import { Credentials } from "@/types/types";
 
 export default function Page({ params }: { params: { id: string } }) {
   // const initState = {
@@ -17,10 +16,10 @@ export default function Page({ params }: { params: { id: string } }) {
   //   cardNumber: 0,
   // };
   const orderData = localStorage.getItem("order");
-  const [formData, setFormData] = useState(orderData);
+  const [formData, setFormData] = useState({});
   console.log(formData);
   const { email } = useAuth();
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     register,
@@ -28,16 +27,15 @@ export default function Page({ params }: { params: { id: string } }) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: Credentials) => {
+  const onSubmit = (data: FieldValues) => {
     const orderData = JSON.stringify(data);
     localStorage.setItem("order", orderData);
     setFormData(data);
 
-    router.push(`/confirm/${params.id}`)
-
+    router.push(`/confirm/${params.id}`);
   };
   useEffect(() => {
-    const data = JSON.parse(orderData);
+    const data = JSON.parse(orderData as string);
     setFormData(data);
   }, [orderData]);
 
@@ -89,7 +87,7 @@ export default function Page({ params }: { params: { id: string } }) {
               type="email"
               className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
               disabled
-              value={email}
+              value={email as string}
             />
             <input
               type="number"

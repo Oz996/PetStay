@@ -26,7 +26,7 @@ export interface Rental {
   bathroom: number;
   amenities: Amenities;
   dog_amenities: DogAmenities;
-  neighborhood: Neighborhood;
+  neighborhood: Neighborhood[];
   host: Host;
   feats: Feats[];
   gallery: Gallery[];
@@ -86,7 +86,7 @@ export interface Host {
   host: string;
   imageUrl: string;
   rating: number;
-  questions: Question;
+  questions: Question[];
 }
 
 export interface Question {

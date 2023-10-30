@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import RentalCard from "./RentalCard";
 import { Rental } from "@/types/types";
-import next from "next";
 import axios from "axios";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/app/Navbar";
 
 export const metadata: Metadata = {
   title: "PetStay - Home",

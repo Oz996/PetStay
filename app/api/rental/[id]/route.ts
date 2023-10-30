@@ -38,12 +38,18 @@ export async function GET(
   }
 }
 
+interface UserReview {
+  title: string;
+  review: string;
+  userEmail: string;
+}
+
 export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const body: Review = await req.json();
+    const body: UserReview = await req.json();
     const { review, title, userEmail } = body;
 
     const user = await prisma.user.findUnique({

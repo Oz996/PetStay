@@ -1,7 +1,7 @@
 import React from "react";
-import PingIcon from "./Icons/PingIcon";
-import CalendarIcon from "./Icons/CalendarIcon";
-import SearchIcon from "./Icons/SearchIcon";
+import PingIcon from "../components/Icons/PingIcon";
+import CalendarIcon from "../components/Icons/CalendarIcon";
+import SearchIcon from "../components/Icons/SearchIcon";
 
 const Navbar = () => {
   return (

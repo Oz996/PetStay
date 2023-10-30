@@ -25,9 +25,9 @@ const Map = ({ rental }: props) => {
         lng: rental.longitude,
       };
 
-      const mapOptions: google.maps.MapOptions = {
+      const mapOptions = {
         center: position,
-        zoom: 14,
+        zoom: 15,
         mapId: "PETSTAY_MAP",
       };
 
@@ -40,7 +40,7 @@ const Map = ({ rental }: props) => {
     };
 
     initMap();
-  }, []);
+  });
 
   return <div className="h-[27rem] w-full rounded-xl" ref={mapRef}></div>;
 };

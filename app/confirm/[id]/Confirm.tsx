@@ -2,7 +2,7 @@
 import BackArrow from "@/components/Icons/BackArrow";
 import CreditCard from "@/components/Icons/CreditCard";
 import { useAuth } from "@/hooks/useAuth";
-import { Credentials, Rental } from "@/types/types";
+import { Rental } from "@/types/types";
 import Image from "next/image";
 
 interface props {
@@ -11,7 +11,7 @@ interface props {
 }
 
 const Confirm = ({ params, rental }: props) => {
-  const user = JSON.parse(localStorage.getItem("order"));
+  const user = JSON.parse(localStorage.getItem("order") as string);
   const { email } = useAuth();
   console.log(rental);
 
@@ -81,9 +81,10 @@ const Confirm = ({ params, rental }: props) => {
           Message to host
         </h2>
         <textarea
-        rows={8}
-        className="w-full resize-none py-10 px-20 rounded-xl text-xl focus:outline-none" 
-        placeholder="Additional information... "/>
+          rows={8}
+          className="w-full resize-none py-10 px-20 rounded-xl text-xl focus:outline-none"
+          placeholder="Additional information... "
+        />
       </div>
     </section>
   );
