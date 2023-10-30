@@ -2,8 +2,11 @@
 import BackArrow from "@/components/Icons/BackArrow";
 import CreditCard from "@/components/Icons/CreditCard";
 import { useAuth } from "@/hooks/useAuth";
-import { Rental } from "@/types/types";
+import { Credentials, Rental } from "@/types/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FieldValue, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface props {
   rental: Rental;
@@ -15,6 +18,7 @@ const Confirm = ({ params, rental }: props) => {
   const { email } = useAuth();
   console.log(rental);
 
+  const router = useRouter();
   const year = new Date().getFullYear();
   console.log(user);
 
@@ -28,6 +32,45 @@ const Confirm = ({ params, rental }: props) => {
       alt="Image of a rental"
     />
   ));
+
+  const { register, handleSubmit } = useForm();
+
+  interface BookingData extends Credentials {
+    message: string;
+  }
+
+  const onSubmit = async (data: FieldValue<BookingData>) => {
+    const { message } = data as BookingData;
+    const firstName = user.firstName;
+    const lastName = user.lastName;
+    const phone = user.phone;
+    const userEmail = email;
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/booking/${params.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message,
+            firstName,
+            lastName,
+            phone,
+            userEmail,
+          }),
+        }
+      );
+      if (res.status === 201) {
+        router.push("/");
+        toast.success("Your booking has been placed");
+        console.log(res);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <section>
@@ -76,16 +119,26 @@ const Confirm = ({ params, rental }: props) => {
           </div>
         </div>
       </article>
-      <div className="max-w-[90rem] shadow-xl mx-auto rounded-xl border bg-primary py-10 px-20 mt-20">
-        <h2 className="text-center text-white text-4xl font-semibold mb-8">
-          Message to host
-        </h2>
-        <textarea
-          rows={8}
-          className="w-full resize-none py-10 px-20 rounded-xl text-xl focus:outline-none"
-          placeholder="Additional information... "
-        />
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="max-w-[90rem] shadow-xl mx-auto rounded-xl border bg-primary py-10 px-20 mt-20">
+          <h2 className="text-center text-white text-4xl font-semibold mb-8">
+            Message to host
+          </h2>
+
+          <textarea
+            rows={8}
+            {...register("message")}
+            className="w-full resize-none py-10 px-20 rounded-xl text-xl focus:outline-none"
+            placeholder="Additional information... "
+          />
+        </div>
+        <button
+          type="submit"
+          className="btn rounded-none uppercase mt-12 absolute left-0 w-full h-20 bg-primary text-3xl text-white hover:bg-primary_hover duration-300"
+        >
+          confirm
+        </button>
+      </form>
     </section>
   );
 };

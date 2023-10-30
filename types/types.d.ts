@@ -95,9 +95,18 @@ export interface Question {
 }
 
 export interface Credentials {
-  firstName: string
-  lastName: string
-  phone: number
-  cardName: string
-  cardNumber: number
+  firstName: string;
+  lastName: string;
+  phone: string;
+  cardName: string;
+  cardNumber: number;
+}
+
+export interface Booking {
+  firstName: string;
+  lastName: string;
+  message: string;
+  phone: string;
+  user: User;
+  rental: Rental;
 }

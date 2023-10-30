@@ -90,7 +90,7 @@ export default function Page({ params }: { params: { id: string } }) {
               value={email as string}
             />
             <input
-              type="number"
+              type="text"
               {...register("phone", { required: "This field is required" })}
               className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
               placeholder="Phone number"
