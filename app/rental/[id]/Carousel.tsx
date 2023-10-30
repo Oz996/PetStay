@@ -54,6 +54,9 @@ const Carousel = ({ rental }: props) => {
             className="w-full h-[28rem] rounded-lg object-cover"
             priority={true}
           />
+          <div className="absolute bg-white opacity-80 left-0 bottom-0 w-full p-3 flex gap-1 text-lg font-semibold justify-center">
+            <p>{currentSlide + 1}</p> /<p>{rental.gallery.length}</p>
+          </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a onClick={goToPreviousSlide} className="btn btn-circle">
               ❮

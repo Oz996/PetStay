@@ -41,7 +41,7 @@ model Rental {
   rating        Rating?
   host          Host?          @relation(fields: [hostId], references: [id])
   hostId        String?        @db.ObjectId
-  order         Booking?
+  order         Booking[]
   neighborhood  Neighborhood[]
   gallery       Gallery[]
   reviews       Review[]
