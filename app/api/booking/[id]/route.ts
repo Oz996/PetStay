@@ -11,7 +11,7 @@ export async function POST(
   }
   try {
     const body: UserBooking = await req.json();
-    const { firstName, lastName, message, userEmail } = body;
+    const { firstName, lastName, message, userEmail, phone } = body;
 
     const user = await prisma.user.findUnique({
       where: {
@@ -23,13 +23,14 @@ export async function POST(
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    const order = await prisma.order.create({
+    const order = await prisma.booking.create({
       data: {
         firstName,
         lastName,
         message,
         rentalId: params.id,
         userId: user.id,
+        phone,
       },
       include: {
         user: true,

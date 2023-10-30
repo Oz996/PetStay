@@ -38,8 +38,8 @@ const Details = ({ rental, params }: props) => {
   return (
     <section>
       <BackArrow />
-      <div className="grid grid-cols-2">
-        <div className="pt-10">
+      <div className="flex justify-between">
+        <div className="pt-10 w-4/12">
           <h1 className="text-4xl font-semibold mb-5">{rental?.name}</h1>
           <Description rental={rental} />
           <Link href={`/reservation/${params.id}`}>

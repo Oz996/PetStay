@@ -51,94 +51,110 @@ export default function Page({ params }: { params: { id: string } }) {
           className="flex flex-col gap-10"
         >
           <div className="flex gap-10 mx-auto">
-            <input
-              type="text"
-              {...register("firstName", { required: "This field is required" })}
-              className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
-              placeholder="First Name"
-            />
-            <ErrorMessage
-              errors={errors}
-              name="firstName"
-              render={({ message }) => (
-                <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
-                  {message}
-                </p>
-              )}
-            ></ErrorMessage>
-            <input
-              type="text"
-              {...register("lastName", { required: "This field is required" })}
-              className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
-              placeholder="Last Name"
-            />
-            <ErrorMessage
-              errors={errors}
-              name="lastName"
-              render={({ message }) => (
-                <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
-                  {message}
-                </p>
-              )}
-            ></ErrorMessage>
+            <div>
+              <input
+                type="text"
+                {...register("firstName", {
+                  required: "This field is required",
+                })}
+                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                placeholder="First Name"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="firstName"
+                render={({ message }) => (
+                  <p className="text-red-500 text-sm font-semibold m-2">
+                    {message}
+                  </p>
+                )}
+              ></ErrorMessage>
+            </div>
+            <div>
+              <input
+                type="text"
+                {...register("lastName", {
+                  required: "This field is required",
+                })}
+                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                placeholder="Last Name"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="lastName"
+                render={({ message }) => (
+                  <p className="text-red-500 text-sm font-semibold m-2 ">
+                    {message}
+                  </p>
+                )}
+              ></ErrorMessage>
+            </div>
           </div>
           <div className="flex gap-10 mx-auto">
             <input
               type="email"
-              className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
+              className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
               disabled
               value={email as string}
             />
-            <input
-              type="text"
-              {...register("phone", { required: "This field is required" })}
-              className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
-              placeholder="Phone number"
-            />
-            <ErrorMessage
-              errors={errors}
-              name="phone"
-              render={({ message }) => (
-                <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
-                  {message}
-                </p>
-              )}
-            ></ErrorMessage>
+            <div>
+              <input
+                type="text"
+                {...register("phone", { required: "This field is required" })}
+                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                placeholder="Phone number"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="phone"
+                render={({ message }) => (
+                  <p className="text-red-500 text-sm font-semibold m-2">
+                    {message}
+                  </p>
+                )}
+              ></ErrorMessage>
+            </div>
           </div>
           <hr className="border-gray-300 w-10/12 mx-auto" />
           <div className="flex gap-10 mx-auto">
-            <input
-              type="text"
-              {...register("cardName", { required: "This field is required" })}
-              className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
-              placeholder="Cardholder Name"
-            />
-            <ErrorMessage
-              errors={errors}
-              name="cardName"
-              render={({ message }) => (
-                <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
-                  {message}
-                </p>
-              )}
-            ></ErrorMessage>
-            <input
-              type="text"
-              {...register("cardNumber", {
-                required: "This field is required",
-              })}
-              className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] min-w-[17rem] focus:outline-primary"
-              placeholder="Card Number"
-            />
-            <ErrorMessage
-              errors={errors}
-              name="cardNumber"
-              render={({ message }) => (
-                <p className="text-red-500 text-sm font-semibold  my-[-1rem]">
-                  {message}
-                </p>
-              )}
-            ></ErrorMessage>
+            <div>
+              <input
+                type="text"
+                {...register("cardName", {
+                  required: "This field is required",
+                })}
+                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                placeholder="Cardholder Name"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="cardName"
+                render={({ message }) => (
+                  <p className="text-red-500 text-sm font-semibold m-2">
+                    {message}
+                  </p>
+                )}
+              ></ErrorMessage>
+            </div>
+            <div>
+              <input
+                type="text"
+                {...register("cardNumber", {
+                  required: "This field is required",
+                })}
+                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                placeholder="Card Number"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="cardNumber"
+                render={({ message }) => (
+                  <p className="text-red-500 text-sm font-semibold m-2">
+                    {message}
+                  </p>
+                )}
+              ></ErrorMessage>
+            </div>
           </div>
           <button
             type="submit"

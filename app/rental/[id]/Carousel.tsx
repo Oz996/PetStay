@@ -37,7 +37,7 @@ const Carousel = ({ rental }: props) => {
   };
 
   return (
-    <div className="carousel w-[40rem] ">
+    <div className="carousel w-7/12">
       {rental.gallery.map((image, index) => (
         <div
           key={image.id}
@@ -51,7 +51,7 @@ const Carousel = ({ rental }: props) => {
             width={400}
             height={400}
             alt="Picture of rental"
-            className="w-full h-[23rem] rounded-lg object-cover"
+            className="w-full h-[28rem] rounded-lg object-cover"
             priority={true}
           />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
