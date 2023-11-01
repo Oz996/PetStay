@@ -29,12 +29,10 @@ export async function POST(req: NextRequest) {
 
     try {
       const decodedToken = jwt.verify(token, secretKey);
-      console.log(decodedToken);
     } catch (error) {
       console.error(error);
     }
 
-    console.log(token);
     return NextResponse.json({ token });
   } catch (error) {
     return NextResponse.json(

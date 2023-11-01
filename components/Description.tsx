@@ -28,7 +28,7 @@ const Description = ({ rental }: props) => {
         <p>{rental?.price} SEK/night</p>
       </div>
       <div className="mb-5">{rentalList}</div>
-      <div className="flex flex-wrap justify-between gap-3">
+      <div className="flex flex-wrap gap-3">
         {rental?.feats?.map((feat) => {
           return (
             <span

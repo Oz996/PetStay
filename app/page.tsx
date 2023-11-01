@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import RentalCard from "./RentalCard";
-import { Rental } from "@/types/types";
 import axios from "axios";
-import Navbar from "@/app/Navbar";
+import Rentals from "./Rentals";
 
 export const metadata: Metadata = {
   title: "PetStay - Home",
@@ -16,7 +14,6 @@ export default async function Home() {
     return data;
   };
   const data = await getRentals();
-  console.log(data);
   // const res = await fetch("http://localhost:3000/api/rentals", {
   //   next: { revalidate: 20 },
   // });
@@ -24,14 +21,7 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
-      <section className="pt-36">
-        <div className="grid grid-cols-2">
-          {data?.map((rental: Rental) => (
-            <RentalCard key={rental.id} rental={rental} />
-          ))}
-        </div>
-      </section>
+      <Rentals rentals={data} />
     </>
   );
 }
