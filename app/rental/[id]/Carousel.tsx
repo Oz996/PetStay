@@ -10,14 +10,6 @@ interface props {
 const Carousel = ({ rental }: props) => {
   console.log(rental);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const totalSlides = rental.gallery.length;

@@ -1,23 +1,35 @@
 import prisma from "@/lib/prisma";
+import { Rental } from "@/types/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const city = searchParams.get("city");
-
-    console.log(city);
-    if (!city) {
-      return NextResponse.json(
-        { error: "Missing search parameter" },
-        { status: 400 }
-      );
-    }
+    const dateArrival = searchParams.get("dateArrival");
+    const dateDeparture = searchParams.get("dateDeparture");
+    const type = searchParams.get("type");
 
     const search = await prisma.rental.findMany({
       where: {
-        city,
+        city: {
+          contains: city,
+          mode: "insensitive",
+        },
+        dateArrival: {
+          contains: dateArrival,
+          mode: "insensitive",
+        },
+        dateDeparture: {
+          contains: dateDeparture,
+          mode: "insensitive",
+        },
+        type: {
+          contains: type,
+          mode: "insensitive",
+        },
       },
+
       include: {
         amenities: true,
         dog_amenities: true,

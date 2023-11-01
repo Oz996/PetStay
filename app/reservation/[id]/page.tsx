@@ -57,7 +57,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 {...register("firstName", {
                   required: "This field is required",
                 })}
-                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
                 placeholder="First Name"
               />
               <ErrorMessage
@@ -76,7 +76,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 {...register("lastName", {
                   required: "This field is required",
                 })}
-                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
                 placeholder="Last Name"
               />
               <ErrorMessage
@@ -93,7 +93,7 @@ export default function Page({ params }: { params: { id: string } }) {
           <div className="flex gap-10 mx-auto">
             <input
               type="email"
-              className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+              className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
               disabled
               value={email as string}
             />
@@ -101,7 +101,7 @@ export default function Page({ params }: { params: { id: string } }) {
               <input
                 type="text"
                 {...register("phone", { required: "This field is required" })}
-                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
                 placeholder="Phone number"
               />
               <ErrorMessage
@@ -123,7 +123,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 {...register("cardName", {
                   required: "This field is required",
                 })}
-                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
                 placeholder="Cardholder Name"
               />
               <ErrorMessage
@@ -142,7 +142,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 {...register("cardNumber", {
                   required: "This field is required",
                 })}
-                className="rounded-xl border border-black px-3 pl-12 h-[3rem] min-w-[17rem] focus:outline-primary"
+                className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
                 placeholder="Card Number"
               />
               <ErrorMessage

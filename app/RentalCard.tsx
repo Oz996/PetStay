@@ -11,7 +11,7 @@ interface props {
 const RentalCard = ({ rental }: props) => {
   const image = rental.gallery.map((image) => (
     <figure
-      className="w-[20rem] h-[12.5rem] rounded-xl group-hover:opacity-90 group-hover:object-top duration-300"
+      className="md:w-[20rem] h-[12.5rem] rounded-xl group-hover:opacity-90 group-hover:object-top duration-300"
       key={image.id}
     >
       <Image
@@ -25,10 +25,10 @@ const RentalCard = ({ rental }: props) => {
   ));
 
   return (
-    <article className="card group bg-base-100 shadow-xl cursor-pointer max-h-[18.5rem]">
+    <article className="card group bg-base-100 shadow-xl cursor-pointer lg:max-h-[18.5rem] max-sm:w-[90%] max-sm:mx-auto">
       <Link
         href={`/rental/${rental.id}`}
-        className="card-body grid grid-cols-2"
+        className="card-body grid md:grid-cols-2"
       >
         <div>{image[0]}</div>
         <div className="flex flex-col p-4">
