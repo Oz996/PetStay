@@ -25,7 +25,7 @@ const Confirm = ({ params, rental }: props) => {
   const image = rental.gallery.map((image) => (
     <Image
       key={image.id}
-      className="w-full h-[24.5rem] object-cover rounded-r-xl"
+      className="w-full h-[24.5rem] object-cover md:rounded-r-xl"
       width={300}
       height={300}
       src={image.imageUrl}
@@ -79,12 +79,12 @@ const Confirm = ({ params, rental }: props) => {
         <h1 className="text-4xl font-semibold text-center my-8">
           Your trip details
         </h1>
-        <div className="max-w-[90rem] max-h-[30rem] bg-base-100 shadow-xl mx-auto rounded-xl border">
-          <div className="grid grid-cols-2">
+        <div className="max-w-[90rem] md:max-h-[30rem] bg-base-100 shadow-xl mx-auto rounded-xl sm:border">
+          <div className="grid md:grid-cols-2">
             <div className="py-10 px-10">
               <h2 className="text-3xl font-semibold">{rental?.name}</h2>
               <hr className="my-10 border-gray-300" />
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-2">
                 <div className="flex flex-col gap-10 text-xl">
                   <div>
                     <p>
@@ -120,7 +120,7 @@ const Confirm = ({ params, rental }: props) => {
         </div>
       </article>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="max-w-[90rem] shadow-xl mx-auto rounded-xl border bg-primary py-10 px-20 mt-20">
+        <div className="max-w-[90rem] shadow-xl mx-auto sm:rounded-xl border bg-primary py-10 px-10 md:px-20 mt-20">
           <h2 className="text-center text-white text-4xl font-semibold mb-8">
             Message to host
           </h2>
@@ -128,13 +128,13 @@ const Confirm = ({ params, rental }: props) => {
           <textarea
             rows={8}
             {...register("message")}
-            className="w-full resize-none py-10 px-20 rounded-xl text-xl focus:outline-none"
+            className="w-full resize-none py-10 px-5 md:px-20 rounded-xl text-xl focus:outline-none"
             placeholder="Additional information... "
           />
         </div>
         <button
           type="submit"
-          className="btn rounded-none uppercase mt-12 absolute left-0 w-full h-20 bg-primary text-3xl text-white hover:bg-primary_hover duration-300"
+          className="btn rounded-none uppercase md:mt-12 absolute left-0 w-full h-20 bg-primary text-3xl text-white hover:bg-primary_hover duration-300"
         >
           confirm
         </button>

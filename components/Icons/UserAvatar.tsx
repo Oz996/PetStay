@@ -1,10 +1,16 @@
 import React from "react";
 
-const UserAvatar = () => {
+interface props {
+  className?: string;
+  width?: string;
+  height?: string;
+}
+
+const UserAvatar = ({ className, width = "69", height = "65" }: props) => {
   return (
     <svg
-      width="69"
-      height="65"
+      width={width}
+      height={height}
       viewBox="0 0 69 65"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

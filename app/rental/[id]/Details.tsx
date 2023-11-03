@@ -34,23 +34,22 @@ const Details = ({ rental, params }: props) => {
       : `${rental?.bathroom} bathrooms`,
   ];
 
-
   return (
     <section>
       <BackArrow />
-      <div className="flex justify-between">
-        <div className="pt-10 w-4/12">
+      <div className="flex flex-col lg:flex-row justify-between">
+        <div className="pt-10 lg:w-4/12 w-[90%] mx-auto max-sm:text-center text-xl md:text-base">
           <h1 className="text-4xl font-semibold mb-5">{rental?.name}</h1>
           <Description rental={rental} />
           <Link href={`/reservation/${params.id}`}>
-            <button className="h-[3rem] btn w-[25rem] mt-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
+            <button className="h-[3rem] btn w-full md:w-[25rem] mt-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
               book now
             </button>
           </Link>
         </div>
         <Carousel rental={rental} />
       </div>
-      <div className="grid grid-cols-2 gap-20 my-20">
+      <div className="flex flex-col gap-10 md:grid md:grid-cols-2 md:gap-20 md:my-20 my-5 max-sm:px-5">
         <div>
           <h2 className="text-3xl font-semibold mb-5">{rental?.name}</h2>
           <p className="text-lg">{rental?.description}</p>
@@ -64,7 +63,7 @@ const Details = ({ rental, params }: props) => {
         <h2 className="text-lg font-semibold">Sound level</h2>
         <p>{rental.sound_level}</p>
       </div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 max-sm:px-5">
         <div>
           <h2 className="text-2xl font-bold mb-5">Amenities</h2>
           <div className="flex flex-col gap-4">
@@ -101,7 +100,7 @@ const Details = ({ rental, params }: props) => {
           </div>
         </div>
         <div>
-          <h2 className="text-2xl font-bold mb-5">Amenities</h2>
+          <h2 className="text-2xl font-bold mb-5">Dog Amenities</h2>
           <div className="flex flex-col gap-4">
             {rental.dog_amenities.microwave && (
               <div className="flex gap-6 items-center text-xl">
@@ -130,13 +129,13 @@ const Details = ({ rental, params }: props) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 mt-32">
+      <div className="flex flex-col gap-10 md:grid md:grid-cols-2 md:mt-32 mt-28 max-sm:px-5">
         <Map rental={rental} />
         <div className="px-10">
-          <h2 className="text-2xl font-bold mb-5">
+          <h2 className="text-xl md:text-2xl font-bold md:mb-5">
             Pet-friendly Neighborhoods
           </h2>
-          <ul className="p-8">
+          <ul className="lg:p-8">
             {rental.neighborhood.map((item: Neighborhood) => (
               <li key={item.id} className="text-xl grid grid-cols-2 my-3">
                 <div className="flex gap-3 items-center">
@@ -152,8 +151,8 @@ const Details = ({ rental, params }: props) => {
           </ul>
         </div>
       </div>
-      <div className="rounded-3xl border border-black py-10 px-20 grid grid-cols-2 mt-32">
-        <div className="w-[45%] flex flex-col gap-5 text-center ">
+      <div className="rounded-3xl border border-black py-10 px-7 md:px-20 md:grid md:grid-cols-2 mt-32">
+        <div className="md:w-[45%] flex flex-col gap-5 text-center max-sm:items-center">
           <h2 className="text-2xl">Hi im your furry host!</h2>
           <div className="avatar">
             <div className="w-72 rounded-full">
@@ -167,7 +166,7 @@ const Details = ({ rental, params }: props) => {
           </div>
           <p className="text-2xl font-bold">{rental.host.host}</p>
           <div className="flex gap-2 items-center text-center justify-center">
-            <AiTwotoneStar className="text-green-600 text-xl" />
+            <AiTwotoneStar className="text-primary text-xl" />
             <p className="text-xl">{rental.host.rating}</p>
           </div>
         </div>

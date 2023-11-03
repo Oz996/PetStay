@@ -29,7 +29,7 @@ const Carousel = ({ rental }: props) => {
   };
 
   return (
-    <div className="carousel w-7/12">
+    <div className="carousel lg:w-7/12 max-sm:pt-5">
       {rental.gallery.map((image, index) => (
         <div
           key={image.id}

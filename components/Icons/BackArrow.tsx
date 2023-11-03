@@ -7,7 +7,7 @@ const BackArrow = () => {
   const router = useRouter();
   return (
     <div
-      className="flex gap-5 items-center text-lg cursor-pointer my-4"
+      className="flex gap-5 items-center text-lg cursor-pointer my-4 max-sm:pl-5"
       onClick={() => router.back()}
     >
       <svg

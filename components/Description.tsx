@@ -19,7 +19,7 @@ const Description = ({ rental }: props) => {
 
   return (
     <>
-      <div className="flex gap-3 text-gray-400 mb-5">
+      <div className="flex gap-3 text-gray-400 mb-5 max-sm:justify-center">
         <p className="border-r">
           {rental?.dateArrival}
           <span className="mx-3">-</span>
@@ -28,7 +28,7 @@ const Description = ({ rental }: props) => {
         <p>{rental?.price} SEK/night</p>
       </div>
       <div className="mb-5">{rentalList}</div>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 max-sm:justify-center">
         {rental?.feats?.map((feat) => {
           return (
             <span
@@ -39,7 +39,7 @@ const Description = ({ rental }: props) => {
             </span>
           );
         })}
-      </div>{" "}
+      </div>
     </>
   );
 };

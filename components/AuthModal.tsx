@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useAuth } from "@/hooks/useAuth";
+import UserAvatar from "./Icons/UserAvatar";
 
 const AuthModal = () => {
   const [userRegister, setUserRegister] = useState(false);
@@ -24,6 +25,7 @@ const AuthModal = () => {
     handleSubmit: signInHandleSubmit,
     formState: { errors: signInErrors },
     getValues,
+    reset,
   } = useForm();
 
   const onRegisterSubmit = async (data: FieldValues) => {
@@ -38,6 +40,7 @@ const AuthModal = () => {
       });
       if (res.status === 201) {
         setUserRegister(false);
+        reset();
       }
       console.log(res.status);
     } catch (error) {
@@ -86,14 +89,14 @@ const AuthModal = () => {
             Log in
           </button>
           <dialog ref={modalRef} id="my_modal_2" className="modal">
-            <div className="modal-box flex flex-col gap-3">
+            <div className="modal-box flex flex-col gap-3 max-sm:w-full">
               <form method="dialog">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                   ✕
                 </button>
               </form>
               <div className="flex justify-center">
-                <Logo height="80" width="100" className="" />
+                <Logo height="80" width="100" className="max-sm:hidden" />
               </div>
               {!userRegister ? (
                 <>
@@ -102,7 +105,7 @@ const AuthModal = () => {
                   </h3>
                   <form
                     onSubmit={signInHandleSubmit(onSignInSubmit)}
-                    className="flex flex-col gap-10 p-12"
+                    className="flex flex-col gap-10 md:p-12 max-sm:py-5"
                   >
                     <input
                       type="text"
@@ -166,7 +169,7 @@ const AuthModal = () => {
                   </h3>
                   <form
                     onSubmit={signUpHandleSubmit(onRegisterSubmit)}
-                    className="flex flex-col gap-10 p-12"
+                    className="flex flex-col gap-10 max-sm:py-5 md:p-12"
                   >
                     <input
                       type="text"
@@ -250,9 +253,9 @@ const AuthModal = () => {
       ) : (
         <button
           onClick={signOut}
-          className="h-[2.5rem] btn btn-sm bg-primary min-w-[7.5rem] rounded-full capitalize text-[1rem] text-white hover:bg-primary_hover duration-300"
+          className="h-[2.5rem] btn btn-sm bg-primary max-w-[7.5rem] rounded-full capitalize text-[1rem] text-white hover:bg-primary_hover duration-300"
         >
-          <Logo height="40" width="40" />
+          <UserAvatar height="35" />
           Profile
         </button>
       )}

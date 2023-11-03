@@ -100,7 +100,7 @@ export interface Credentials {
   phone: string;
   cardName: string;
   cardNumber: number;
-}m
+}
 
 export interface Booking {
   firstName: string;

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Page({ params }: { params: { id: string } }) {
   // const initState = {
@@ -18,7 +19,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const orderData = localStorage.getItem("order");
   const [formData, setFormData] = useState({});
   console.log(formData);
-  const { email } = useAuth();
+  const { email, isLoggedIn } = useAuth();
   const router = useRouter();
 
   const {
@@ -45,12 +46,12 @@ export default function Page({ params }: { params: { id: string } }) {
       <h1 className="text-4xl font-semibold text-center my-8">
         Create new reservation
       </h1>
-      <div className="rounded-xl border border-black max-w-[50rem] mx-auto px-10 py-20">
+      <div className="rounded-xl mdborder md:border-black max-w-[50rem] mx-auto px-10 py-5 md:py-20">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-10"
         >
-          <div className="flex gap-10 mx-auto">
+          <div className="flex flex-col md:flex-row gap-10 mx-auto">
             <div>
               <input
                 type="text"
@@ -90,7 +91,7 @@ export default function Page({ params }: { params: { id: string } }) {
               ></ErrorMessage>
             </div>
           </div>
-          <div className="flex gap-10 mx-auto">
+          <div className="flex flex-col md:flex-row gap-10 mx-auto">
             <input
               type="email"
               className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
@@ -116,7 +117,7 @@ export default function Page({ params }: { params: { id: string } }) {
             </div>
           </div>
           <hr className="border-gray-300 w-10/12 mx-auto" />
-          <div className="flex gap-10 mx-auto">
+          <div className="flex flex-col md:flex-row gap-10 mx-auto">
             <div>
               <input
                 type="text"

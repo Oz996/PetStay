@@ -25,7 +25,7 @@ const RentalCard = ({ rental }: props) => {
   ));
 
   return (
-    <article className="card group bg-base-100 shadow-xl cursor-pointer lg:max-h-[18.5rem] max-sm:w-[90%] max-sm:mx-auto">
+    <article className="card group bg-base-100 shadow-xl cursor-pointer lg:max-h-[18.5rem] max-md:mx-auto">
       <Link
         href={`/rental/${rental.id}`}
         className="card-body grid md:grid-cols-2"

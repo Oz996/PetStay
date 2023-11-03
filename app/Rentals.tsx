@@ -19,10 +19,6 @@ const Rentals = ({ rentals }: props) => {
 
   const { register, handleSubmit, reset } = useForm();
 
-  interface Data {
-    city: string;
-  }
-
   const onSearch = async (data: FieldValues) => {
     const { city, dateArrival, dateDeparture, type } = data;
     const res = await axios.get(
@@ -30,7 +26,6 @@ const Rentals = ({ rentals }: props) => {
     );
     setSearch(res.data.search);
     console.log(res.data.search);
-    reset();
   };
 
   console.log(rentals);
@@ -87,8 +82,11 @@ const Rentals = ({ rentals }: props) => {
           </ul>
           {search.length > 0 && (
             <div
-              className="flex gap-1 items-center text-secondary text-lg underline cursor-pointer mt-2"
-              onClick={() => setSearch(rentals)}
+              className="flex gap-1 items-center text-secondary text-lg cursor-pointer mt-2 hover:underline"
+              onClick={() => {
+                setSearch([]);
+                reset();
+              }}
             >
               <RiCloseFill size={20} />
               <p>reset filters</p>
