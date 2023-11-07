@@ -16,7 +16,7 @@ interface props {
 }
 
 const Reviews = ({ rental, params }: props) => {
-  const [newReview, setNewReview] = useState<Review[]>(rental.reviews);
+  const [newReview, setNewReview] = useState<Review[]>(rental?.reviews);
   console.log(newReview);
   const { isLoggedIn, email } = useAuth();
   console.log(email);
@@ -50,7 +50,7 @@ const Reviews = ({ rental, params }: props) => {
   return (
     <section className="mt-10">
       <div className="text-2xl flex gap-3">
-        {rental.reviews.length > 0 && (
+        {rental?.reviews.length > 0 && (
           <>
             <AiTwotoneStar className="text-primary text-3xl" />
             <p className="">{rating}</p>
@@ -59,16 +59,16 @@ const Reviews = ({ rental, params }: props) => {
         )}
       </div>
 
-      {newReview.length === 0 ? (
+      {newReview?.length === 0 ? (
         <div>
           <h2 className="text-2xl font-semibold">No reviews yet</h2>
         </div>
       ) : (
         <div className="grid lg:grid-cols-2 my-12 gap-3">
-          {newReview.map((review) => (
+          {newReview?.map((review) => (
             <div
               className="rounded-3xl border border-black py-6 flex flex-col md:grid md:grid-cols-2 max-h-[30rem] md:max-h-[18rem] overflow-y-scroll"
-              key={review.id}
+              key={review?.id}
             >
               <div className="flex flex-col gap-5 font-semibold md:pl-20 items-center">
                 <div className="w-32 h-32 rounded-full bg-green-500 flex items-center justify-center">
@@ -79,9 +79,9 @@ const Reviews = ({ rental, params }: props) => {
               </div>
               <div className="flex flex-col gap-8 md:-ml-14 max-sm:px-5">
                 <h2 className="text-2xl font-bold max-sm:text-center max-sm:mt-3">
-                  {review.title}
+                  {review?.title}
                 </h2>
-                <p>{review.review}</p>
+                <p>{review?.review}</p>
               </div>
             </div>
           ))}

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface props{
-    className: string
+    className?: string
 }
 
 const SearchIcon = ({ className }: props) => {
