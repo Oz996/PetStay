@@ -13,19 +13,19 @@ export async function GET(req: NextRequest) {
     const search = await prisma.rental.findMany({
       where: {
         city: {
-          contains: city,
+          contains: city!,
           mode: "insensitive",
         },
         dateArrival: {
-          contains: dateArrival,
+          contains: dateArrival!,
           mode: "insensitive",
         },
         dateDeparture: {
-          contains: dateDeparture,
+          contains: dateDeparture!,
           mode: "insensitive",
         },
         type: {
-          contains: type,
+          contains: type!,
           mode: "insensitive",
         },
       },

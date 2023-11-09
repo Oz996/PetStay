@@ -1,5 +1,4 @@
 import prisma from "@/lib/prisma";
-import { Review } from "@/types/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(

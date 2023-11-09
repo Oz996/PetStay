@@ -82,8 +82,9 @@ const AuthModal = () => {
           <button
             className="h-[2.5rem] btn btn-sm bg-primary min-w-[7.5rem] rounded-full capitalize text-[1rem] text-white hover:bg-primary_hover duration-300"
             onClick={() => {
-              document.getElementById("my_modal_2")!.showModal();
-              setUserRegister(false);
+              if (document) {
+                (document.getElementById('my_modal_2') as HTMLFormElement).showModal();
+              }
             }}
           >
             Log in

@@ -23,12 +23,12 @@ export async function POST(req: NextRequest) {
 
     const secretKey = process.env.SECRET_KEY;
 
-    const token = jwt.sign({ userId: user?.id }, secretKey, {
+    const token = jwt.sign({ userId: user?.id }, secretKey!, {
       expiresIn: "1h",
     });
 
     try {
-      const decodedToken = jwt.verify(token, secretKey);
+      const decodedToken = jwt.verify(token, secretKey!);
     } catch (error) {
       console.error(error);
     }
