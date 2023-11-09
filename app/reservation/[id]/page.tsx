@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import Logo from "@/components/Logo";
 
 export default function Page({ params }: { params: { id: string } }) {
   // const initState = {
@@ -39,6 +39,25 @@ export default function Page({ params }: { params: { id: string } }) {
     const data = JSON.parse(orderData as string);
     setFormData(data);
   }, [orderData]);
+
+  const validateCard = (value: string) => {
+    const pattern =
+      /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/;
+    return (
+      pattern.test(value) ||
+      " Invalid card number forma (e.g., XXXX-XXXX-XXXX-XXXX)t"
+    );
+  };
+
+  if (!isLoggedIn)
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <Logo width="120" height="120" />
+        <h1 className="text-4xl font-semibold text-center my-8">
+          Sign in to book
+        </h1>
+      </div>
+    );
 
   return (
     <section>
@@ -142,6 +161,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 type="text"
                 {...register("cardNumber", {
                   required: "This field is required",
+                  validate: validateCard,
                 })}
                 className="rounded-xl border border-black px-3 pl-12 min-h-[3rem] max-h-[3rem] min-w-[17rem] focus:outline-primary"
                 placeholder="Card Number"
@@ -150,7 +170,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 errors={errors}
                 name="cardNumber"
                 render={({ message }) => (
-                  <p className="text-red-500 text-sm font-semibold m-2">
+                  <p className="text-red-500 text-sm font-semibold m-2 w-52">
                     {message}
                   </p>
                 )}

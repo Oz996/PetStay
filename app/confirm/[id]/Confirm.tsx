@@ -80,7 +80,7 @@ const Confirm = ({ params, rental }: props) => {
           Your trip details
         </h1>
         <div className="max-w-[90rem] md:max-h-[30rem] bg-base-100 shadow-xl mx-auto rounded-xl sm:border">
-          <div className="grid md:grid-cols-2">
+          <div className="grid lg:grid-cols-2">
             <div className="py-10 px-10">
               <h2 className="text-3xl font-semibold">{rental?.name}</h2>
               <hr className="my-10 border-gray-300" />

@@ -27,18 +27,20 @@ const Description = ({ rental }: props) => {
         </p>
         <p>{rental?.price} SEK/night</p>
       </div>
-      <div className="mb-5">{rentalList}</div>
-      <div className="flex flex-wrap gap-3 max-sm:justify-center">
-        {rental?.feats?.map((feat) => {
-          return (
-            <span
-              key={feat.id}
-              className="p-2 bg-primary_light rounded-full text-center w-[9rem]"
-            >
-              {feat.feat}
-            </span>
-          );
-        })}
+      <div className="md:flex md:flex-row md:justify-between flex-col lg:flex-col">
+        <div className="mb-5">{rentalList}</div>
+        <div className="flex flex-wrap gap-3 max-sm:justify-center">
+          {rental?.feats?.map((feat) => {
+            return (
+              <span
+                key={feat.id}
+                className="p-2 bg-primary_light rounded-full text-center w-[9rem]"
+              >
+                {feat.feat}
+              </span>
+            );
+          })}
+        </div>
       </div>
     </>
   );
