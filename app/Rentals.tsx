@@ -45,8 +45,9 @@ const Rentals = ({ rentals }: props) => {
         onClick={() => {
           if (document) {
             (
-              document.getElementById("my_modal_2") as HTMLFormElement
+              document.getElementById("my_modal_3") as HTMLFormElement
             ).showModal();
+            setMobile(true);
           }
         }}
         className="bg-secondary hover:bg-danger duration-300 btn min-h-[3rem] w-[9rem] rounded-xl hidden max-sm:flex absolute left-20 top-[13rem] text-white"
