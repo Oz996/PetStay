@@ -42,7 +42,7 @@ const Details = ({ rental, params }: props) => {
           <h1 className="text-4xl font-semibold mb-5">{rental?.name}</h1>
           <Description rental={rental} />
           <Link href={`/reservation/${params.id}`}>
-            <button className="h-[3rem] btn w-full md:w-[25rem] mt-5 mb-0 sm:mb-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
+            <button className="h-[3rem] btn w-full max-md:w-[25rem] mt-5 mb-0 sm:mb-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
               book now
             </button>
           </Link>
