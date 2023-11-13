@@ -76,9 +76,15 @@ const Profile = ({ bookings }: props) => {
                   </Link>
                   <button
                     className="btn  bg-secondary hover:bg-danger duration-300 text-white"
-                    onClick={() =>
-                      document.getElementById("my_modal_4").showModal()
-                    }
+                    onClick={() => {
+                      if (document) {
+                        (
+                          document.getElementById(
+                            "my_modal_4"
+                          ) as HTMLFormElement
+                        ).showModal();
+                      }
+                    }}
                   >
                     Cancel Booking
                   </button>
