@@ -46,3 +46,26 @@ export async function POST(
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { id } = body;
+
+    const cancelBooking = await prisma.booking.delete({
+      where: {
+        id,
+      },
+    });
+    return NextResponse.json(
+      { message: "Booking has been canceled" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Error deleting booking" },
+      { status: 500 }
+    );
+  }
+}

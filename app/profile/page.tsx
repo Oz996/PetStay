@@ -9,9 +9,7 @@ export default async function Page() {
   };
 
   const bookings = await getBookings();
-  console.log(bookings)
+  console.log(bookings);
 
-  return (
-    <Profile bookings={bookings}/>
-  );
+  return <Profile bookings={bookings} />;
 }
