@@ -1,5 +1,5 @@
 "use client";
-import BackArrow from "@/components/Icons/BackArrow";
+import BackArrow from "@/components/BackArrow";
 import CreditCard from "@/components/Icons/CreditCard";
 import { useAuth } from "@/hooks/useAuth";
 import { Credentials, Rental } from "@/types/types";

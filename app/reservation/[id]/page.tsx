@@ -1,6 +1,6 @@
 "use client";
 
-import BackArrow from "@/components/Icons/BackArrow";
+import BackArrow from "@/components/BackArrow";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";

@@ -1,5 +1,5 @@
 import Description from "@/components/Description";
-import BackArrow from "@/components/Icons/BackArrow";
+import BackArrow from "@/components/BackArrow";
 import { Neighborhood, Question, Rental } from "@/types/types";
 import React from "react";
 import Carousel from "./Carousel";
