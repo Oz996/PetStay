@@ -7,6 +7,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useAuth } from "@/hooks/useAuth";
 import UserAvatar from "./Icons/UserAvatar";
+import Link from "next/link";
 
 const AuthModal = () => {
   const [userRegister, setUserRegister] = useState(false);
@@ -83,7 +84,9 @@ const AuthModal = () => {
             className="h-[2.5rem] btn btn-sm bg-primary min-w-[7.5rem] rounded-full capitalize text-[1rem] text-white hover:bg-primary_hover duration-300"
             onClick={() => {
               if (document) {
-                (document.getElementById('my_modal_2') as HTMLFormElement).showModal();
+                (
+                  document.getElementById("my_modal_2") as HTMLFormElement
+                ).showModal();
               }
             }}
           >
@@ -252,13 +255,27 @@ const AuthModal = () => {
           </dialog>
         </>
       ) : (
-        <button
-          onClick={signOut}
-          className="h-[2.5rem] btn btn-sm bg-primary max-w-[7.5rem] rounded-full capitalize text-[1rem] text-white hover:bg-primary_hover duration-300"
-        >
-          <UserAvatar height="35" />
-          Profile
-        </button>
+        <>
+          <div className="dropdown">
+            <label tabIndex={0}>
+              <button className="h-[2.5rem] btn btn-sm bg-primary max-w-[7.5rem] rounded-full capitalize text-[1rem] text-white hover:bg-primary_hover duration-300">
+                <UserAvatar height="35" />
+                Profile
+              </button>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32 text-lg"
+            >
+              <li>
+                <Link href="/profile">Profile</Link>
+              </li>
+              <li>
+                <p onClick={() => signOut()}>Logout</p>
+              </li>
+            </ul>
+          </div>
+        </>
       )}
     </>
   );

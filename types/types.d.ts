@@ -103,6 +103,7 @@ export interface Credentials {
 }
 
 export interface Booking {
+  id: string;
   firstName: string;
   lastName: string;
   message: string;
