@@ -25,7 +25,7 @@ const Confirm = ({ params, rental }: props) => {
   const image = rental.gallery.map((image) => (
     <Image
       key={image.id}
-      className="w-full h-[24.5rem] object-cover md:rounded-r-xl"
+      className="w-full h-full md:max-h-[30rem] shadow-xl object-cover md:mb-20 lg:rounded-r-xl"
       width={300}
       height={300}
       src={image.imageUrl}
@@ -73,7 +73,7 @@ const Confirm = ({ params, rental }: props) => {
   };
 
   return (
-    <section>
+    <section className="flex flex-col lg:gap-20 md:gap-[30rem] sm:gap-20">
       <article>
         <BackArrow />
         <h1 className="text-4xl font-semibold text-center my-8">
@@ -120,7 +120,7 @@ const Confirm = ({ params, rental }: props) => {
         </div>
       </article>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="max-w-[90rem] shadow-xl mx-auto sm:rounded-xl border bg-primary py-10 px-10 md:px-20 mt-20">
+        <div className="max-w-[90rem] shadow-xl mx-auto sm:rounded-xl border bg-primary py-10 px-10 md:px-20">
           <h2 className="text-center text-white text-4xl font-semibold mb-8">
             Message to host
           </h2>
@@ -134,7 +134,7 @@ const Confirm = ({ params, rental }: props) => {
         </div>
         <button
           type="submit"
-          className="btn rounded-none uppercase md:mt-12 absolute left-0 w-full h-20 bg-primary text-3xl text-white hover:bg-primary_hover duration-300"
+          className="btn rounded-none uppercase absolute left-0 w-full h-20 bg-primary text-3xl text-white hover:bg-primary_hover duration-300 mt-20"
         >
           confirm
         </button>

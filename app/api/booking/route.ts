@@ -5,7 +5,11 @@ export async function GET() {
   try {
     const bookings = await prisma.booking.findMany({
       include: {
-        rental: true,
+        rental: {
+          include: {
+            host: true,
+          },
+        },
         user: true,
       },
     });

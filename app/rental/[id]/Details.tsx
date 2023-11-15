@@ -38,11 +38,11 @@ const Details = ({ rental, params }: props) => {
     <section>
       <BackArrow />
       <div className="flex flex-col lg:flex-row justify-between">
-        <div className="pt-10 lg:w-4/12 w-full mx-auto max-sm:text-center text-xl md:text-base max-sm:w-[90%]">
+        <div className="pt-10 lg:w-4/12 w-full mx-auto text-center lg:text-start text-xl md:text-base max-sm:w-[90%]">
           <h1 className="text-4xl font-semibold mb-5">{rental?.name}</h1>
           <Description rental={rental} />
           <Link href={`/reservation/${params.id}`}>
-            <button className="h-[3rem] btn w-full max-md:w-[25rem] mt-5 mb-0 sm:mb-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
+            <button className="h-[3rem] btn w-full max-md:w-[25rem] lg:w-full mt-5 mb-0 sm:mb-5 bg-primary rounded-xl uppercase text-[1rem] text-white hover:bg-primary_hover duration-300">
               book now
             </button>
           </Link>

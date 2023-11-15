@@ -7,6 +7,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 interface props {
   bookings: Booking[];
@@ -47,14 +48,17 @@ const Profile = ({ bookings }: props) => {
   return (
     <section>
       <BackArrow />
-      <div>
+      <div className="max-sm:text-center flex flex-col">
         <h1 className="font-semibold text-3xl pt-10">Current booking</h1>
         {booking === null || booking.length < 1 ? (
           <p className="text-xl">No bookings</p>
         ) : (
           <ul>
             {booking?.map((booking) => (
-              <li key={booking.id} className="text-lg pt-5 w-[16rem]">
+              <li
+                key={booking.id}
+                className="text-lg pt-5 w-[16rem] max-sm:text-center max-sm:mx-auto"
+              >
                 <h2 className="text-xl border-b pb-2">{booking.rental.name}</h2>
                 <div className="flex gap-1 pt-2">
                   <p>{booking.rental.dateArrival}</p>
@@ -66,6 +70,22 @@ const Profile = ({ bookings }: props) => {
                   <div className="flex gap-1">
                     <p>{booking.rental.city},</p>
                     <p>{booking.rental.city_short}</p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p>Host:</p>
+                  <div className="flex items-center gap-2">
+                    <div className="avatar">
+                      <div className="w-12 rounded-full">
+                        <Image
+                          src={booking.rental.host.imageUrl}
+                          height={200}
+                          width={200}
+                          alt="image of host"
+                        />
+                      </div>
+                    </div>
+                    <p>{booking.rental.host.host}</p>
                   </div>
                 </div>
                 <div className="flex gap-5 pt-3">
