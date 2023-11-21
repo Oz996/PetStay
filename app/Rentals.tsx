@@ -52,7 +52,7 @@ const Rentals = ({ rentals }: props) => {
             setMobile(true);
           }
         }}
-        className="bg-secondary hover:bg-danger duration-300 btn min-h-[3rem] w-[9rem] rounded-xl hidden max-sm:flex absolute left-20 top-[13rem] text-white"
+        className="bg-secondary hover:bg-danger duration-300 btn min-h-[3rem] w-[9rem] rounded-xl hidden max-sm:flex absolute left-20 top-[10rem] text-white "
       >
         Filters
       </button>
@@ -187,7 +187,7 @@ const Rentals = ({ rentals }: props) => {
           )}
         </form>
       </nav>
-      <section className="pt-36">
+      <section className="lg:pt-0 pt-20">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 max-lg:mt-10">
           {displayRentals?.map((rental: Rental) => (
             <RentalCard key={rental.id} rental={rental} />

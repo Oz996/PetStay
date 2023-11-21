@@ -1,18 +1,13 @@
 import prisma from "@/lib/prisma";
-import { Rental } from "@/types/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    // const { searchParams } = new URL(req.url);
-    // const city = searchParams.get("city");
-    // const dateArrival = searchParams.get("dateArrival");
-    // const dateDeparture = searchParams.get("dateDeparture");
-    // const type = searchParams.get("type");
-
-    // solution for hosting
-
-    const { city, dateArrival, dateDeparture, type } = req.query;
+    const { searchParams } = new URL(req.url);
+    const city = searchParams.get("city");
+    const dateArrival = searchParams.get("dateArrival");
+    const dateDeparture = searchParams.get("dateDeparture");
+    const type = searchParams.get("type");
 
     const search = await prisma.rental.findMany({
       where: {

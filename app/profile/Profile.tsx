@@ -54,17 +54,20 @@ const Profile = ({ bookings }: props) => {
         {booking === null || booking.length < 1 ? (
           <p className="text-xl">No bookings</p>
         ) : (
-          <ul>
+          <div>
             {booking?.map((booking) => (
-              <li
+              <div
                 key={booking.id}
-                className="text-lg pt-5 w-[16rem] max-sm:text-center max-sm:mx-auto"
+                className="text-lg pt-5 w-[16rem] max-sm:text-center max-sm:mx-auto flex flex-col gap-3"
               >
                 <h2 className="text-xl border-b pb-2">{booking.rental.name}</h2>
-                <div className="flex gap-1 pt-2">
-                  <p>{booking.rental.dateArrival}</p>
-                  <p>-</p>
-                  <p>{booking.rental.dateDeparture}</p>
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-1 pt-2">
+                    <p>{booking.rental.dateArrival}</p>
+                    <p>-</p>
+                    <p>{booking.rental.dateDeparture}</p>
+                  </div>
+                  <p>{booking.rental.address}</p>
                 </div>
                 <div className="flex justify-between">
                   <p>{booking.rental.country}</p>
@@ -137,9 +140,9 @@ const Profile = ({ bookings }: props) => {
                     </form>
                   </dialog>
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </section>
