@@ -7,6 +7,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import UserAvatar from "@/components/Icons/UserAvatar";
 import { useState } from "react";
 import { AiTwotoneStar } from "react-icons/ai";
+import { getBaseUrl } from "@/lib/utils/URL";
 
 interface props {
   rental: Rental;
@@ -30,7 +31,7 @@ const Reviews = ({ rental, params }: props) => {
   const onReviewPost = async (data: FieldValues) => {
     const { title, review } = data;
     const userEmail = email;
-    const res = await fetch(`http://localhost:3000/api/rental/${params?.id}`, {
+    const res = await fetch(getBaseUrl() + `/api/rental/${params?.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

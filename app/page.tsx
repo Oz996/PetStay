@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import axios from "axios";
 import Rentals from "./Rentals";
+import { getBaseUrl } from "@/lib/utils/URL";
 
 export const metadata: Metadata = {
   title: "PetStay - Home",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const getRentals = async () => {
-    const res = await axios.get("http://localhost:3000/api/rentals");
+    const res = await axios.get(getBaseUrl() + "/api/rentals");
     const data = res.data;
     return data;
   };

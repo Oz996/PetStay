@@ -2,6 +2,7 @@
 import BackArrow from "@/components/BackArrow";
 import CreditCard from "@/components/Icons/CreditCard";
 import { useAuth } from "@/hooks/useAuth";
+import { getBaseUrl } from "@/lib/utils/URL";
 import { Credentials, Rental } from "@/types/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -46,22 +47,19 @@ const Confirm = ({ params, rental }: props) => {
     const phone = user.phone;
     const userEmail = email;
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/booking/${params.id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message,
-            firstName,
-            lastName,
-            phone,
-            userEmail,
-          }),
-        }
-      );
+      const res = await fetch(getBaseUrl() + `/api/booking/${params.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message,
+          firstName,
+          lastName,
+          phone,
+          userEmail,
+        }),
+      });
       if (res.status === 201) {
         router.push("/");
         toast.success("Your booking has been placed");

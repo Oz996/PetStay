@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { getBaseUrl } from "@/lib/utils/URL";
 
 interface props {
   bookings: Booking[];
@@ -31,7 +32,7 @@ const Profile = ({ bookings }: props) => {
 
   const cancelBooking = async (id: string) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/booking/${id}`, {
+      const res = await fetch(getBaseUrl() + `/api/booking/${id}`, {
         method: "DELETE",
         body: JSON.stringify({ id }),
       });

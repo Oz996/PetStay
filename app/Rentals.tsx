@@ -9,6 +9,7 @@ import { useState } from "react";
 import axios from "axios";
 import { FieldValues, useForm } from "react-hook-form";
 import { RiCloseFill } from "react-icons/ri";
+import { getBaseUrl } from "@/lib/utils/URL";
 
 interface props {
   rentals: Rental[];
@@ -28,7 +29,8 @@ const Rentals = ({ rentals }: props) => {
   const onSearch = async (data: FieldValues) => {
     const { city, dateArrival, dateDeparture, type } = data;
     const res = await axios.get(
-      `http://localhost:3000/api/rentals/search?city=${city}&dateArrival=${dateArrival}&dateDeparture=${dateDeparture}&type=${type}`
+      getBaseUrl() +
+        `/api/rentals/search?city=${city}&dateArrival=${dateArrival}&dateDeparture=${dateDeparture}&type=${type}`
     );
     const search = res.data.search;
     setSearch(search);

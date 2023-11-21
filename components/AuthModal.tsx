@@ -8,6 +8,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useAuth } from "@/hooks/useAuth";
 import UserAvatar from "./Icons/UserAvatar";
 import Link from "next/link";
+import { getBaseUrl } from "@/lib/utils/URL";
 
 const AuthModal = () => {
   const [userRegister, setUserRegister] = useState(false);
@@ -32,7 +33,7 @@ const AuthModal = () => {
   const onRegisterSubmit = async (data: FieldValues) => {
     try {
       setIsLoading(true);
-      const res = await fetch("http://localhost:3000/api/register", {
+      const res = await fetch(getBaseUrl() + "/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +55,7 @@ const AuthModal = () => {
   const onSignInSubmit = async (data: FieldValues) => {
     try {
       setIsLoading(true);
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch(getBaseUrl() + "/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
