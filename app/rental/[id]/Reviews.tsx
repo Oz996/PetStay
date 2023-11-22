@@ -18,6 +18,7 @@ interface props {
 
 const Reviews = ({ rental, params }: props) => {
   const [newReview, setNewReview] = useState<Review[]>(rental?.reviews);
+  const [isLoading, setIsLoading] = useState(false);
   console.log(newReview);
   const { isLoggedIn, email } = useAuth();
   console.log(email);
@@ -29,20 +30,27 @@ const Reviews = ({ rental, params }: props) => {
   } = useForm();
 
   const onReviewPost = async (data: FieldValues) => {
-    const { title, review } = data;
-    const userEmail = email;
-    const res = await fetch(getBaseUrl() + `/api/rental/${params?.id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, review, userEmail }),
-    });
-    if (res.status === 201) {
-      const data = await res.json();
-      setNewReview([...newReview, data]);
-      reset();
-      console.log(res);
+    try {
+      setIsLoading(true);
+      const { title, review } = data;
+      const userEmail = email;
+      const res = await fetch(getBaseUrl() + `/api/rental/${params?.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, review, userEmail }),
+      });
+      if (res.status === 201) {
+        const data = await res.json();
+        setNewReview([...newReview, data]);
+        reset();
+        console.log(res);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -125,6 +133,9 @@ const Reviews = ({ rental, params }: props) => {
               type="submit"
               className="btn bg-primary text-white capitalize text-[1rem] hover:bg-primary_hover"
             >
+              {isLoading && (
+                <span className="loading loading-spinner loading-sm"></span>
+              )}
               Submit
             </button>
           </form>
