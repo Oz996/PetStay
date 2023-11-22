@@ -64,6 +64,7 @@ const Confirm = ({ params, rental }: props) => {
         router.push("/");
         toast.success("Your booking has been placed");
         console.log(res);
+        localStorage.removeItem("order");
       }
     } catch (error) {
       console.error(error);
